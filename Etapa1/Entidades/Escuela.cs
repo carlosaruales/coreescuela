@@ -22,5 +22,11 @@ namespace Etapa1.Entidades
     public int AnoCreacion { get; set; }
     public string Pais { get; set; }
     public string Ciudad { get; set; }
+
+    public TiposEscuela TipoEscuela{ get; set;}
+
+    public override string ToString() {
+      return $"Nombre {Nombre}, Tipo{TipoEscuela} \n Pais {Pais}, Ciudad {Ciudad}";
+    }
   }
 }

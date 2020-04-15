@@ -10,8 +10,9 @@ namespace Etapa1
             var escuela  = new Escuela("Platzi", 2012);
             escuela.Pais = "Colombia";
             escuela.Ciudad = "Bogotá";
+            escuela.TipoEscuela = TiposEscuela.Secundaria;
 
-            Console.WriteLine(escuela.Nombre);
+            Console.WriteLine(escuela);
         }
     }
 }
