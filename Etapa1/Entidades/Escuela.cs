@@ -2,10 +2,11 @@ namespace Etapa1.Entidades
 {
   class Escuela
   {
-    // public Escuela(string nombre, int ano) {
-    //   this.nombre = nombre;
-    //   AnoCreacion = ano;
-    // }
+    public Escuela(string nombre, int ano, TiposEscuela tiposEscuela, string pais = "", string ciudad = "") {
+      (Nombre, AnoCreacion) = (nombre, ano);
+      Pais = pais;
+      Ciudad =  ciudad;
+    }
 
     public Escuela(string nombre, int ano) => (Nombre, AnoCreacion) = (nombre, ano);
     string nombre;
@@ -26,7 +27,7 @@ namespace Etapa1.Entidades
     public TiposEscuela TipoEscuela{ get; set;}
 
     public override string ToString() {
-      return $"Nombre {Nombre}, Tipo{TipoEscuela} \n Pais {Pais}, Ciudad {Ciudad}";
+      return $"Nombre \"{Nombre},\" Tipo{TipoEscuela} {System.Environment.NewLine} Pais {Pais}, Ciudad {Ciudad}";
     }
   }
 }
