@@ -33,10 +33,33 @@ namespace Etapa1
 
         private static void ImprimirCursosWhile(Curso[] arregloCursos) {
             int contador = 0;
-            while (contador <= arregloCursos.Length)
+            while (contador < arregloCursos.Length)
             {
                 Console.WriteLine($"Nombre {arregloCursos[contador].Nombre}, Id{arregloCursos[contador].UniqueId}");
                 contador+= 1;
+            }
+        }
+
+        private static void ImprimirCursosDoWhile(Curso[] arregloCursos) {
+            int contador = 0;
+            do 
+            {
+                Console.WriteLine($"Nombre {arregloCursos[contador].Nombre}, Id{arregloCursos[contador].UniqueId}");
+                contador++;
+            } while (contador < arregloCursos.Length);
+        }
+
+        private static void ImprimirCursosFor(Curso[] arregloCursos) {
+            for (int i = 0; i < arregloCursos.Length; i++)
+            {
+                Console.WriteLine($"Nombre {arregloCursos[i].Nombre}, Id{arregloCursos[i].UniqueId}");
+            }
+        }
+
+        private static void ImprimirCursosForEach(Curso[] arregloCursos) {
+            foreach (var item in arregloCursos)
+            {
+                Console.WriteLine($"Nombre {item.Nombre}, Id{item.UniqueId}");
             }
         }
     }
