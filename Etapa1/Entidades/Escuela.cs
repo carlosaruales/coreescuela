@@ -26,6 +26,8 @@ namespace Etapa1.Entidades
 
     public TiposEscuela TipoEscuela{ get; set;}
 
+    public Curso[] Cursos {get; set;}
+
     public override string ToString() {
       return $"Nombre \"{Nombre},\" Tipo{TipoEscuela} {System.Environment.NewLine} Pais {Pais}, Ciudad {Ciudad}";
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using Etapa1.Entidades;
+using static System.Console;
 
 namespace Etapa1
 {
@@ -10,24 +11,29 @@ namespace Etapa1
             var escuela  = new Escuela("Platzi", 2012, TiposEscuela.Primaria, ciudad: "Pradera");
             escuela.Pais = "Colombia";
             escuela.Ciudad = "Bogotá";
-            var arregloCursos = new Curso[3];
 
-            arregloCursos[0] = new Curso() {
-                Nombre = "101"
+            Curso[] arregloCursos =  new Curso[]{
+                new Curso() { Nombre = "101" },
+                new Curso() { Nombre = "201" },
+                new Curso() { Nombre = "301" }
             };
 
-            var curso2 = new Curso() {
-                Nombre = "201"
-            };
+            ImprimirCursosEscuela(escuela);
 
-            arregloCursos[1] = curso2;
-            arregloCursos[2] = new Curso() {
-                Nombre = "301"
-            };
+            // var arregloCursos = new Curso[3] {
+            //     new Curso() { Nombre = "101" },
+            //     new Curso() { Nombre = "201" },
+            //     new Curso() { Nombre = "301" }
+            // };
 
-            Console.WriteLine(escuela);
-            Console.WriteLine("=======================");
-            ImprimirCursosWhile(arregloCursos);
+            // var arregloCursos = new Curso[] {
+            //     new Curso() { Nombre = "101" },
+            //     new Curso() { Nombre = "201" },
+            //     new Curso() { Nombre = "301" }
+            // };
+
+            // Console.WriteLine("=======================");
+            // ImprimirCursosWhile(arregloCursos);
             
         }
 
@@ -59,8 +65,22 @@ namespace Etapa1
         private static void ImprimirCursosForEach(Curso[] arregloCursos) {
             foreach (var item in arregloCursos)
             {
-                Console.WriteLine($"Nombre {item.Nombre}, Id{item.UniqueId}");
+                WriteLine($"Nombre {item.Nombre}, Id{item.UniqueId}");
             }
+        }
+
+        private static void ImprimirCursosEscuela(Escuela escuela) {
+            WriteLine("=========================================");
+            WriteLine("=========Cursos de la escuela============");
+
+            if(escuela?.Cursos != null){
+                foreach (var item in escuela.Cursos)
+                {
+                    WriteLine($"Nombre {item.Nombre}, Id{item.UniqueId}");
+                }
+            }
+
+            WriteLine("=========================================");
         }
     }
 }
