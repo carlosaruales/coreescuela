@@ -1,6 +1,7 @@
 ﻿using System;
 using Etapa1.Entidades;
 using static System.Console;
+using System.Collections.Generic;
 
 namespace Etapa1
 {
@@ -12,12 +13,28 @@ namespace Etapa1
             escuela.Pais = "Colombia";
             escuela.Ciudad = "Bogotá";
 
-            Curso[] arregloCursos =  new Curso[]{
+            escuela.Cursos = new List<Curso>() {
                 new Curso() { Nombre = "101" },
                 new Curso() { Nombre = "201" },
                 new Curso() { Nombre = "301" }
             };
 
+            escuela.Cursos.Add(
+               new Curso { Nombre = "401", Jornada= TiposJornada.Morning}
+            );
+
+            escuela.Cursos.Add(
+               new Curso { Nombre = "202", Jornada= TiposJornada.Morning}
+            );
+
+            var otraColeccion = new List<Curso>() {
+                new Curso() { Nombre = "501" },
+                new Curso() { Nombre = "601" },
+                new Curso() { Nombre = "602" }
+            };
+            
+            otraColeccion.Clear();
+            escuela.Cursos.AddRange(otraColeccion);
             ImprimirCursosEscuela(escuela);
 
             // var arregloCursos = new Curso[3] {
