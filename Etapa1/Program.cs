@@ -1,7 +1,7 @@
 ﻿using System;
 using Etapa1.Entidades;
 using static System.Console;
-namespace Etapa1.App;
+using Etapa1.App;
 
 namespace Etapa1
 {
