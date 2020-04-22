@@ -40,8 +40,16 @@ namespace Etapa1
             escuela.Cursos.AddRange(otraColeccion);
             escuela.Cursos.Add(tmp);
             escuela.Cursos.Remove(tmp);
-            Predicate<Curso>miAlgoritmo = Predicado;
-            escuela.Cursos.RemoveAll(miAlgoritmo);
+            // Predicate<Curso>miAlgoritmo = Predicado;
+
+            escuela.Cursos.RemoveAll(delegate (Curso cur) {
+                return cur.Nombre == "301";
+            });
+
+            escuela.Cursos.RemoveAll((cur) => 
+                cur.Nombre == "301" && 
+                cur.Jornada == TiposJornada.Morning
+            );
 
             ImprimirCursosEscuela(escuela);
 
