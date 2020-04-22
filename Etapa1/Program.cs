@@ -32,25 +32,20 @@ namespace Etapa1
                 new Curso() { Nombre = "601" },
                 new Curso() { Nombre = "602" }
             };
-            
+            Curso tmp = new Curso {
+                Nombre = "vacacional",
+                Jornada = TiposJornada.Afternoon
+            };
             otraColeccion.Clear();
             escuela.Cursos.AddRange(otraColeccion);
+            escuela.Cursos.Add(tmp);
+            escuela.Cursos.Remove(tmp);
+            Predicate<Curso>miAlgoritmo = Predicado;
+            escuela.Cursos.RemoveAll(miAlgoritmo);
+
             ImprimirCursosEscuela(escuela);
 
-            // var arregloCursos = new Curso[3] {
-            //     new Curso() { Nombre = "101" },
-            //     new Curso() { Nombre = "201" },
-            //     new Curso() { Nombre = "301" }
-            // };
 
-            // var arregloCursos = new Curso[] {
-            //     new Curso() { Nombre = "101" },
-            //     new Curso() { Nombre = "201" },
-            //     new Curso() { Nombre = "301" }
-            // };
-
-            // Console.WriteLine("=======================");
-            // ImprimirCursosWhile(arregloCursos);
             
         }
 
@@ -98,6 +93,15 @@ namespace Etapa1
             }
 
             WriteLine("=========================================");
+        }
+    
+        // Esta función se llama por cada elemento dentro de la lista
+        private static bool Predicado(Curso curso) {
+            return curso.Nombre == "301";
+        }
+
+        private static int PredicadoMalHecho(Curso curso) {
+            return 301;
         }
     }
 }
