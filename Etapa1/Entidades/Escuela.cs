@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Etapa1.Entidades
 {
-  class Escuela
+  public class Escuela
   {
     public Escuela(string nombre, int ano, TiposEscuela tiposEscuela, string pais = "", string ciudad = "") {
       (Nombre, AnoCreacion) = (nombre, ano);
