@@ -4,6 +4,7 @@ namespace Etapa1.Entidades
 {
   public class Escuela
   {
+    public string UniqueId { get; private set; } = System.Guid.NewGuid().ToString();
     public Escuela(string nombre, int ano, TiposEscuela tiposEscuela, string pais = "", string ciudad = "") {
       (Nombre, AnoCreacion) = (nombre, ano);
       Pais = pais;
