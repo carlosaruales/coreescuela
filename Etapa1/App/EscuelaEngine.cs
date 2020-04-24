@@ -24,17 +24,32 @@ namespace Etapa1.App
             );
 
             CargarCursos();
-            foreach (var curso in escuela.Cursos)
-            {   
-                curso.Alumno.AddRange(CargarAlumnos());
-            }
             CargarAsignaturas();
             CargarEvaluaciones();
         }
 
     private void CargarEvaluaciones()
     {
-      throw new NotImplementedException();
+      foreach (var curso in escuela.Cursos)
+      {
+          foreach (var asignatura in curso.Asignatura)
+          {
+              foreach (var alumno in curso.Alumno)
+              {
+                  var rnd = new Random(System.Environment.TickCount);
+                  for (int i = 0; i < 5; i++)
+                  {
+                      var ev = new Evaluaciones{
+                        Asignatura = asignatura,
+                        Nombre = $"{asignatura.Nombre} Ev#{i+1}",
+                        Nota = (float)(5*rnd.NextDouble()),
+                        Alumno = alumno
+                      };
+                      alumno.Evaluaciones.Add(ev);
+                  }
+              }
+          }
+      }
     }
 
     private void CargarAsignaturas()
