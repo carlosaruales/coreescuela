@@ -48,11 +48,11 @@ namespace Etapa1.App
             new Asignatura{Nombre="Ciencias naturales"},
 
         };
-        item.Asignatura.AddRange(listaAsignaturas);   
+        item.Asignatura = listaAsignaturas;   
       }
     }
 
-    private IEnumerable<Alumno> CargarAlumnos()
+    private List<Alumno> GenerarAlumnos(int cantidad)
     {
         string[] nombre1 = {"Alba", "Felipa", "Eusebio", "Farid", "Donald", "Alvaro", "Nicolas"};
         string[] apellido1 = {"Ruiz", "Ruales", "Acosta", "Polania", "Martinez", "Dyago", "Castellano"};
@@ -63,16 +63,21 @@ namespace Etapa1.App
                         from a1 in apellido1
                         select new Alumno { Nombre = $"{n1} {n2} {a1}" };
 
-        return listaAlumnos;
+        return listaAlumnos.OrderBy((al) => al.UniqueId).Take(cantidad).ToList();
     }
 
-    private void CargarCursos()
+        private void CargarCursos()
         {
             escuela.Cursos = new List<Curso>() {
                 new Curso() { Nombre = "101", Jornada= TiposJornada.Afternoon },
                 new Curso() { Nombre = "201" },
                 new Curso() { Nombre = "301" }
             };
+
+            foreach (var curso in escuela.Cursos)
+            {
+                curso.Alumno = GenerarAlumnos(new Random().Next(5, 20));
+            }
         }
   }
 }
