@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Etapa1.App
 {
-  public class EscuelaEngine
+  public sealed class EscuelaEngine
   {
     public Escuela escuela { get; set; }
 

@@ -2,9 +2,8 @@ using System.Collections.Generic;
 
 namespace Etapa1.Entidades
 {
-  public class Escuela
+  public class Escuela: ObjetoEscuelaBase
   {
-    public string UniqueId { get; private set; } = System.Guid.NewGuid().ToString();
     public Escuela(string nombre, int ano, TiposEscuela tiposEscuela, string pais = "", string ciudad = "") {
       (Nombre, AnoCreacion) = (nombre, ano);
       Pais = pais;
@@ -12,16 +11,6 @@ namespace Etapa1.Entidades
     }
 
     public Escuela(string nombre, int ano) => (Nombre, AnoCreacion) = (nombre, ano);
-    string nombre;
-
-    public string Nombre {
-      get {
-        return nombre;
-      }
-      set {
-        nombre = value;
-      }
-    }
 
     public int AnoCreacion { get; set; }
     public string Pais { get; set; }
