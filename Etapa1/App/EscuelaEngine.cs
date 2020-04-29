@@ -5,50 +5,54 @@ using System.Linq;
 
 namespace Etapa1.App
 {
-    public class EscuelaEngine
+  public class EscuelaEngine
+  {
+    public Escuela escuela { get; set; }
+
+    public EscuelaEngine()
     {
-        public Escuela escuela {get; set;}
 
-        public EscuelaEngine()
-        {
-            
-        }
+    }
 
-        public void Inicializar()
-        {
-            escuela = new Escuela(
-                "Platzi",
-                2012,
-                TiposEscuela.Primaria,
-                ciudad: "Pradera"
-            );
+    public void Inicializar()
+    {
+      escuela = new Escuela(
+        "Platzi",
+        2012,
+        TiposEscuela.Primaria,
+        ciudad: "Pradera"
+      );
 
-            CargarCursos();
-            CargarAsignaturas();
-            CargarEvaluaciones();
-        }
+      CargarCursos();
+      CargarAsignaturas();
+      CargarEvaluaciones();
+    }
 
     private void CargarEvaluaciones()
     {
+      var lista = new List<Evaluacion>();
       foreach (var curso in escuela.Cursos)
       {
-          foreach (var asignatura in curso.Asignatura)
+        foreach (var asignatura in curso.Asignatura)
+        {
+          foreach (var alumno in curso.Alumno)
           {
-              foreach (var alumno in curso.Alumno)
+            var rnd = new Random(System.Environment.TickCount);
+            for (int i = 0; i < 5; i++)
+            {
+              var ev = new Evaluacion
               {
-                  var rnd = new Random(System.Environment.TickCount);
-                  for (int i = 0; i < 5; i++)
-                  {
-                      var ev = new Evaluaciones{
-                        Asignatura = asignatura,
-                        Nombre = $"{asignatura.Nombre} Ev#{i+1}",
-                        Nota = (float)(5*rnd.NextDouble()),
-                        Alumno = alumno
-                      };
-                      alumno.Evaluaciones.Add(ev);
-                  }
-              }
+                Asignatura = asignatura,
+                Nombre = $"{asignatura.Nombre} Ev#{i + 1}",
+                Nota = (float)(5 * rnd.NextDouble()),
+                Alumno = alumno
+              };
+              // lista.Add(ev);
+              alumno.Evaluaciones.Add(ev);
+            }
+            // alumno.Evaluaciones.AddRange(lista);
           }
+        }
       }
     }
 
@@ -63,36 +67,36 @@ namespace Etapa1.App
             new Asignatura{Nombre="Ciencias naturales"},
 
         };
-        item.Asignatura = listaAsignaturas;   
+        item.Asignatura = listaAsignaturas;
       }
     }
 
     private List<Alumno> GenerarAlumnos(int cantidad)
     {
-        string[] nombre1 = {"Alba", "Felipa", "Eusebio", "Farid", "Donald", "Alvaro", "Nicolas"};
-        string[] apellido1 = {"Ruiz", "Ruales", "Acosta", "Polania", "Martinez", "Dyago", "Castellano"};
-        string[] nombre2 = {"Carlos", "Andres", "Evelyn", "Katherine", "Johana", "Deyanira", "Marcela"};
+      string[] nombre1 = { "Alba", "Felipa", "Eusebio", "Farid", "Donald", "Alvaro", "Nicolas" };
+      string[] apellido1 = { "Ruiz", "Ruales", "Acosta", "Polania", "Martinez", "Dyago", "Castellano" };
+      string[] nombre2 = { "Carlos", "Andres", "Evelyn", "Katherine", "Johana", "Deyanira", "Marcela" };
 
-        var listaAlumnos = from n1 in nombre1
-                        from n2 in nombre2
-                        from a1 in apellido1
-                        select new Alumno { Nombre = $"{n1} {n2} {a1}" };
+      var listaAlumnos = from n1 in nombre1
+                         from n2 in nombre2
+                         from a1 in apellido1
+                         select new Alumno { Nombre = $"{n1} {n2} {a1}" };
 
-        return listaAlumnos.OrderBy((al) => al.UniqueId).Take(cantidad).ToList();
+      return listaAlumnos.OrderBy((al) => al.UniqueId).Take(cantidad).ToList();
     }
 
-        private void CargarCursos()
-        {
-            escuela.Cursos = new List<Curso>() {
-                new Curso() { Nombre = "101", Jornada= TiposJornada.Afternoon },
-                new Curso() { Nombre = "201" },
-                new Curso() { Nombre = "301" }
-            };
+    private void CargarCursos()
+    {
+      escuela.Cursos = new List<Curso>() {
+        new Curso() { Nombre = "101", Jornada= TiposJornada.Afternoon },
+        new Curso() { Nombre = "201" },
+        new Curso() { Nombre = "301" }
+      };
 
-            foreach (var curso in escuela.Cursos)
-            {
-                curso.Alumno = GenerarAlumnos(new Random().Next(5, 20));
-            }
-        }
+      foreach (var curso in escuela.Cursos)
+      {
+        curso.Alumno = GenerarAlumnos(new Random().Next(5, 20));
+      }
+    }
   }
 }
