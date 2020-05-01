@@ -98,5 +98,24 @@ namespace Etapa1.App
         curso.Alumno = GenerarAlumnos(new Random().Next(5, 20));
       }
     }
+  
+    public List<ObjetoEscuelaBase> GetObjetoEscuelas() {
+      var listaObj = new List<ObjetoEscuelaBase>();
+      listaObj.Add(escuela);
+      listaObj.AddRange(escuela.Cursos);
+
+      foreach (var curso in escuela.Cursos)
+      {
+        listaObj.AddRange(curso.Asignatura);
+        listaObj.AddRange(curso.Alumno);
+
+        foreach (var alumno in curso.Alumno)
+        {
+          listaObj.AddRange(alumno.Evaluaciones);
+        }
+      }
+      
+      return listaObj;
+    }
   }
 }
