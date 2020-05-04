@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using Etapa1.Util;
+using System;
 
 namespace Etapa1.Entidades
 {
-  public class Escuela: ObjetoEscuelaBase
+  public class Escuela: ObjetoEscuelaBase, ILugar
   {
     public Escuela(string nombre, int ano, TiposEscuela tiposEscuela, string pais = "", string ciudad = "") {
       (Nombre, AnoCreacion) = (nombre, ano);
@@ -22,6 +24,18 @@ namespace Etapa1.Entidades
 
     public override string ToString() {
       return $"Nombre \"{Nombre},\" Tipo{TipoEscuela} {System.Environment.NewLine} Pais {Pais}, Ciudad {Ciudad}";
+    }
+
+    public string Direccion {get; set;}
+
+    public void LimpiarLugar() {
+      Printer.DibujarLinea();
+      Console.WriteLine("Limpiando escuela...");
+      foreach (var curso in Cursos)
+      {
+        curso.LimpiarLugar();
+      }
+      Console.WriteLine($"Escuela {Nombre} limpia");
     }
   }
 }
