@@ -28,6 +28,7 @@ namespace Etapa1.App
       CargarEvaluaciones();
     }
 
+    #region metodos de carga
     private void CargarEvaluaciones()
     {
       var lista = new List<Evaluacion>();
@@ -117,5 +118,6 @@ namespace Etapa1.App
       
       return listaObj;
     }
+    #endregion
   }
 }
