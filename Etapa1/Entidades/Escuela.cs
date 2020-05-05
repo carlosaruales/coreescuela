@@ -35,7 +35,7 @@ namespace Etapa1.Entidades
       {
         curso.LimpiarLugar();
       }
-      Console.WriteLine($"Escuela {Nombre} limpia");
+      Printer.WriteTitle($"Escuela {Nombre} limpia");
     }
   }
 }

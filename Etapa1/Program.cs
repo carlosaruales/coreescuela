@@ -3,6 +3,7 @@ using Etapa1.Entidades;
 using static System.Console;
 using Etapa1.App;
 using Etapa1.Util;
+using System.Linq;
 
 namespace Etapa1
 {
@@ -26,6 +27,10 @@ namespace Etapa1
             };
 
             var listaObjetos = engine.GetObjetoEscuelas();
+            var listaILugar = from obj in listaObjetos
+                                where obj is ILugar
+                                select obj;
+            engine.escuela.LimpiarLugar();
 
 
         }
