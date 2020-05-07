@@ -100,19 +100,43 @@ namespace Etapa1.App
       }
     }
   
-    public List<ObjetoEscuelaBase> GetObjetoEscuelas() {
+    public List<ObjetoEscuelaBase> GetObjetoEscuelas(
+      out int conteoEvaluaciones,
+      out int conteoAsignaturas,
+      out int conteoAlumnos,
+      out int conteoCursos,
+      bool traeEvaluaciones = true,
+      bool traeAlumnos = true,
+      bool traeAsignaturas = true,
+      bool traeCursos = true
+    ) {
+      conteoAsignaturas = conteoEvaluaciones = conteoAlumnos = conteoCursos = 0;
       var listaObj = new List<ObjetoEscuelaBase>();
       listaObj.Add(escuela);
       listaObj.AddRange(escuela.Cursos);
 
-      foreach (var curso in escuela.Cursos)
-      {
-        listaObj.AddRange(curso.Asignatura);
-        listaObj.AddRange(curso.Alumno);
-
-        foreach (var alumno in curso.Alumno)
+      if(traeCursos){
+        conteoCursos = escuela.Cursos.Count;
+        foreach (var curso in escuela.Cursos)
         {
-          listaObj.AddRange(alumno.Evaluaciones);
+          
+          if (traeAsignaturas){
+            listaObj.AddRange(curso.Asignatura);
+            conteoAsignaturas+= curso.Asignatura.Count;
+          }
+          
+          if(traeAlumnos) {
+            listaObj.AddRange(curso.Alumno);
+            conteoAlumnos+= curso.Alumno.Count;
+          }
+
+          if(traeEvaluaciones) {
+            foreach (var alumno in curso.Alumno)
+            {
+              listaObj.AddRange(alumno.Evaluaciones);
+              conteoEvaluaciones+= alumno.Evaluaciones.Count;
+            }
+          }
         }
       }
       

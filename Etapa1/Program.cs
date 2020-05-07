@@ -26,11 +26,20 @@ namespace Etapa1
                 Nombre = "Pepito perez"
             };
 
-            var listaObjetos = engine.GetObjetoEscuelas();
-            var listaILugar = from obj in listaObjetos
-                                where obj is ILugar
-                                select obj;
-            engine.escuela.LimpiarLugar();
+            var listaObjetos = engine.GetObjetoEscuelas(
+                out int conteoEvaluaciones,
+                out int dummy,
+                out dummy,
+                out dummy
+            );
+
+            // var listaObjetos = engine.GetObjetoEscuelas(
+            //     out int conteoEvaluaciones,
+            //     out int conteoAsignaturas,
+            //     out int conteoAlumnos,
+            //     out int conteoCursos
+            // );
+            
 
 
         }
