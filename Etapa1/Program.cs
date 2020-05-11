@@ -3,7 +3,7 @@ using Etapa1.Entidades;
 using static System.Console;
 using Etapa1.App;
 using Etapa1.Util;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace Etapa1
 {
@@ -18,30 +18,23 @@ namespace Etapa1
             Printer.DibujarLinea();
             Printer.DibujarLinea(20);
             ImprimirCursosEscuela(engine.escuela);
-            Printer.DibujarLinea(20);
-            Printer.DibujarLinea(20);
-            Printer.DibujarLinea(20);
-            Printer.WriteTitle("Pruebas de polimorfismo");
-            var alumnoTest = new Alumno{
-                Nombre = "Pepito perez"
-            };
+            Dictionary<int, string> dictionary = new Dictionary<int, string>();
+            dictionary.Add(10, "Carlos");
+            dictionary.Add(23, "Lorem Ipsum");
 
-            var listaObjetos = engine.GetObjetoEscuelas(
-                out int conteoEvaluaciones,
-                out int dummy,
-                out dummy,
-                out dummy
-            );
+            foreach (var item in dictionary)
+            {
+                WriteLine($"Key: {item.Key} Valor:{item.Value}");
+            }
 
-            // var listaObjetos = engine.GetObjetoEscuelas(
-            //     out int conteoEvaluaciones,
-            //     out int conteoAsignaturas,
-            //     out int conteoAlumnos,
-            //     out int conteoCursos
-            // );
-            
+            dictionary[0] = "Pekerman";
+            Printer.WriteTitle("Acceso a diccionario");
+            WriteLine(dictionary[23]);
 
-
+            Printer.WriteTitle("Otro diccionario");
+            var dic = new Dictionary<string, string>();
+            dic["luna"] = "cuerpo celeste";
+            WriteLine(dic["luna"]);
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela) {
