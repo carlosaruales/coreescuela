@@ -205,6 +205,16 @@ namespace Etapa1.App
         out int dummy
       );
     }
+
+    public Dictionary<string, IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos() {
+      var diccionario = new Dictionary<string, IEnumerable<ObjetoEscuelaBase>>();
+
+      diccionario.Add("Escuela", new [] {escuela});
+      diccionario.Add("Cursos", escuela.Cursos.Cast<ObjetoEscuelaBase>());
+
+      return diccionario;
+    }
+
     #endregion
   }
 }

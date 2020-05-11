@@ -18,23 +18,6 @@ namespace Etapa1
             Printer.DibujarLinea();
             Printer.DibujarLinea(20);
             ImprimirCursosEscuela(engine.escuela);
-            Dictionary<int, string> dictionary = new Dictionary<int, string>();
-            dictionary.Add(10, "Carlos");
-            dictionary.Add(23, "Lorem Ipsum");
-
-            foreach (var item in dictionary)
-            {
-                WriteLine($"Key: {item.Key} Valor:{item.Value}");
-            }
-
-            dictionary[0] = "Pekerman";
-            Printer.WriteTitle("Acceso a diccionario");
-            WriteLine(dictionary[23]);
-
-            Printer.WriteTitle("Otro diccionario");
-            var dic = new Dictionary<string, string>();
-            dic["luna"] = "cuerpo celeste";
-            WriteLine(dic["luna"]);
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela) {
