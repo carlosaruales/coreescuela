@@ -142,6 +142,69 @@ namespace Etapa1.App
       
       return listaObj;
     }
+    
+    
+    public List<ObjetoEscuelaBase> GetObjetoEscuelas(
+      bool traeEvaluaciones = true,
+      bool traeAlumnos = true,
+      bool traeAsignaturas = true,
+      bool traeCursos = true
+    ) {
+      return GetObjetoEscuelas(
+        out int dummy,
+        out dummy, 
+        out dummy,
+        out dummy
+      );
+    }
+
+    public List<ObjetoEscuelaBase> GetObjetoEscuelas(
+      out int conteoEvaluaciones,
+      bool traeEvaluaciones = true,
+      bool traeAlumnos = true,
+      bool traeAsignaturas = true,
+      bool traeCursos = true
+    ) {
+      return GetObjetoEscuelas(
+        out conteoEvaluaciones,
+        out int dummy, 
+        out dummy,
+        out dummy
+      );
+    }
+
+    public List<ObjetoEscuelaBase> GetObjetoEscuelas(
+      out int conteoEvaluaciones,
+      out int conteoAsignaturas,
+      bool traeEvaluaciones = true,
+      bool traeAlumnos = true,
+      bool traeAsignaturas = true,
+      bool traeCursos = true
+    ) {
+      return GetObjetoEscuelas(
+        out conteoEvaluaciones,
+        out conteoAsignaturas, 
+        out int dummy,
+        out dummy
+      );
+    }
+
+    public List<ObjetoEscuelaBase> GetObjetoEscuelas(
+      out int conteoEvaluaciones,
+      out int conteoAsignaturas,
+      out int conteoAlumnos,
+      bool traeEvaluaciones = true,
+      bool traeAlumnos = true,
+      bool traeAsignaturas = true,
+      bool traeCursos = true
+    ) {
+      return GetObjetoEscuelas(
+        out conteoEvaluaciones,
+        out conteoAsignaturas, 
+        out conteoAlumnos,
+        out int dummy
+      );
+    }
     #endregion
   }
 }
