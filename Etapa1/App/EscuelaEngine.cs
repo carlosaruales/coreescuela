@@ -100,7 +100,7 @@ namespace Etapa1.App
       }
     }
   
-    public List<ObjetoEscuelaBase> GetObjetoEscuelas(
+    public IReadOnlyList<ObjetoEscuelaBase> GetObjetoEscuelas(
       out int conteoEvaluaciones,
       out int conteoAsignaturas,
       out int conteoAlumnos,
@@ -140,11 +140,11 @@ namespace Etapa1.App
         }
       }
       
-      return listaObj;
+      return listaObj.AsReadOnly();
     }
     
     
-    public List<ObjetoEscuelaBase> GetObjetoEscuelas(
+    public IReadOnlyList<ObjetoEscuelaBase> GetObjetoEscuelas(
       bool traeEvaluaciones = true,
       bool traeAlumnos = true,
       bool traeAsignaturas = true,
@@ -158,7 +158,7 @@ namespace Etapa1.App
       );
     }
 
-    public List<ObjetoEscuelaBase> GetObjetoEscuelas(
+    public IReadOnlyList<ObjetoEscuelaBase> GetObjetoEscuelas(
       out int conteoEvaluaciones,
       bool traeEvaluaciones = true,
       bool traeAlumnos = true,
@@ -173,7 +173,7 @@ namespace Etapa1.App
       );
     }
 
-    public List<ObjetoEscuelaBase> GetObjetoEscuelas(
+    public IReadOnlyList<ObjetoEscuelaBase> GetObjetoEscuelas(
       out int conteoEvaluaciones,
       out int conteoAsignaturas,
       bool traeEvaluaciones = true,
@@ -189,7 +189,7 @@ namespace Etapa1.App
       );
     }
 
-    public List<ObjetoEscuelaBase> GetObjetoEscuelas(
+    public IReadOnlyList<ObjetoEscuelaBase> GetObjetoEscuelas(
       out int conteoEvaluaciones,
       out int conteoAsignaturas,
       out int conteoAlumnos,
