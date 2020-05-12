@@ -230,6 +230,16 @@ namespace Etapa1.App
       return diccionario;
     }
 
+    public void ImprimirDiccionario(Dictionary<LlavesDiccionario, IEnumerable<ObjetoEscuelaBase>>  dic) {
+      foreach (var item in dic)
+      {
+        foreach (var val in item.Value)
+        {
+          Console.WriteLine(val);
+        }
+      }
+    }
+
     #endregion
   }
 }

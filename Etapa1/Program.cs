@@ -18,6 +18,8 @@ namespace Etapa1
             Printer.DibujarLinea();
             Printer.DibujarLinea(20);
             ImprimirCursosEscuela(engine.escuela);
+            var dicTmp = engine.GetDiccionarioObjetos();
+            engine.ImprimirDiccionario(dicTmp);
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela) {
