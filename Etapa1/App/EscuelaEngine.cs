@@ -206,11 +206,11 @@ namespace Etapa1.App
       );
     }
 
-    public Dictionary<string, IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos() {
-      var diccionario = new Dictionary<string, IEnumerable<ObjetoEscuelaBase>>();
+    public Dictionary<LlavesDiccionario, IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos() {
+      var diccionario = new Dictionary<LlavesDiccionario, IEnumerable<ObjetoEscuelaBase>>();
 
-      diccionario.Add("Escuela", new [] {escuela});
-      diccionario.Add("Cursos", escuela.Cursos.Cast<ObjetoEscuelaBase>());
+      diccionario.Add(LlavesDiccionario.Escuela, new [] {escuela});
+      diccionario.Add(LlavesDiccionario.Cursos, escuela.Cursos.Cast<ObjetoEscuelaBase>());
 
       return diccionario;
     }
