@@ -211,6 +211,21 @@ namespace Etapa1.App
 
       diccionario.Add(LlavesDiccionario.Escuela, new [] {escuela});
       diccionario.Add(LlavesDiccionario.Cursos, escuela.Cursos.Cast<ObjetoEscuelaBase>());
+      var evaluaciones = new List<Evaluacion>();
+      var asignaturas = new List<Asignatura>();
+      var alumnos = new List<Alumno>();
+      foreach(var curso in escuela.Cursos) {
+        asignaturas.AddRange(curso.Asignatura);
+        alumnos.AddRange(curso.Alumno);
+        foreach (var alumno in curso.Alumno)
+        {
+          evaluaciones.AddRange(alumno.Evaluaciones);
+        }
+      }
+      diccionario.Add(LlavesDiccionario.Asignaturas, asignaturas);
+      diccionario.Add(LlavesDiccionario.Alumnos, alumnos);
+      diccionario[LlavesDiccionario.Evaluaciones] = evaluaciones;
+      
 
       return diccionario;
     }
