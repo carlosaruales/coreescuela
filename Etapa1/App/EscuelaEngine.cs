@@ -45,7 +45,10 @@ namespace Etapa1.App
               {
                 Asignatura = asignatura,
                 Nombre = $"{asignatura.Nombre} Ev#{i + 1}",
-                Nota = (float)(5 * rnd.NextDouble()),
+                Nota =  MathF.Round(
+                  (float)(5 * rnd.NextDouble()), 
+                  2
+                ),
                 Alumno = alumno
               };
               // lista.Add(ev);
@@ -230,12 +233,32 @@ namespace Etapa1.App
       return diccionario;
     }
 
-    public void ImprimirDiccionario(Dictionary<LlavesDiccionario, IEnumerable<ObjetoEscuelaBase>>  dic) {
+    public void ImprimirDiccionario(Dictionary<LlavesDiccionario, IEnumerable<ObjetoEscuelaBase>>  dic,
+      bool impEval = false) {
       foreach (var item in dic)
       {
         foreach (var val in item.Value)
         {
-          Console.WriteLine(val);
+          switch (item.Key)
+          {
+            case LlavesDiccionario.Evaluaciones:
+              if(impEval) {
+                Console.WriteLine(val);
+              }
+            break;
+
+            case LlavesDiccionario.Escuela:
+              Console.WriteLine(val);
+            break;
+
+            case LlavesDiccionario.Alumnos:
+              Console.WriteLine(val);
+            break;
+            
+            default:
+              Console.WriteLine(val);
+            break;
+          }
         }
       }
     }
