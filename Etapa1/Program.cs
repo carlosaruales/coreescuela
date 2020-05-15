@@ -11,6 +11,9 @@ namespace Etapa1
     {
         static void Main(string[] args)
         {
+            AppDomain.CurrentDomain.ProcessExit+= AccionDelEvento;
+            AppDomain.CurrentDomain.ProcessExit+= (Object sender, EventArgs e) => Printer.WriteTitle("Despues de salir");
+            AppDomain.CurrentDomain.ProcessExit-= AccionDelEvento;
             var engine = new EscuelaEngine();
             engine.Inicializar();
             Printer.WriteTitle("BIENVENIDOS A LA ESCUELA");
@@ -40,6 +43,10 @@ namespace Etapa1
 
         private static int PredicadoMalHecho(Curso curso) {
             return 301;
+        }
+
+        private static void AccionDelEvento(Object sender, EventArgs e) {
+            Printer.WriteTitle("Saliendo...");
         }
     }
 }

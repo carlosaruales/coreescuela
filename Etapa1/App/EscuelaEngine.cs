@@ -32,13 +32,13 @@ namespace Etapa1.App
     private void CargarEvaluaciones()
     {
       var lista = new List<Evaluacion>();
+      var rnd = new Random();
       foreach (var curso in escuela.Cursos)
       {
         foreach (var asignatura in curso.Asignatura)
         {
           foreach (var alumno in curso.Alumno)
           {
-            var rnd = new Random(System.Environment.TickCount);
             for (int i = 0; i < 5; i++)
             {
               var ev = new Evaluacion
@@ -46,7 +46,7 @@ namespace Etapa1.App
                 Asignatura = asignatura,
                 Nombre = $"{asignatura.Nombre} Ev#{i + 1}",
                 Nota =  MathF.Round(
-                  (float)(5 * rnd.NextDouble()), 
+                  5 * (float)rnd.NextDouble(), 
                   2
                 ),
                 Alumno = alumno
