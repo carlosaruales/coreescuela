@@ -18,11 +18,7 @@ namespace Etapa1
             engine.Inicializar();
             Printer.WriteTitle("BIENVENIDOS A LA ESCUELA");
 
-            Printer.DibujarLinea();
-            Printer.DibujarLinea(20);
-            ImprimirCursosEscuela(engine.escuela);
-            var dicTmp = engine.GetDiccionarioObjetos();
-            engine.ImprimirDiccionario(dicTmp);
+            var reporteador = new Reporteador(engine.GetDiccionarioObjetos());
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela) {
