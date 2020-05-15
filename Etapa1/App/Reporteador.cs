@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Etapa1.Entidades;
+using System.Linq;
 
 namespace Etapa1.App
 {
@@ -16,15 +17,25 @@ namespace Etapa1.App
             _diccionario = dic;
         }
 
-        public IEnumerable<Escuela> GetListaEvaluaciones() {
-            IEnumerable<Escuela> rta;
-
+        public IEnumerable<Evaluacion> GetListaEvaluaciones() {
             if (_diccionario.TryGetValue(LlavesDiccionario.Evaluaciones, out IEnumerable<ObjetoEscuelaBase> lista)) {
-                // rta = lista.Cast<Evaluacion>();
-                rta = null;
+                return lista.Cast<Evaluacion>();
             } else {
-                rta = null;
+                return new List<Evaluacion>();
             }
+        }
+
+        public IEnumerable<string> GetListaAsignaturas() {
+            var listaEvaluaciones = GetListaEvaluaciones();
+
+            return  (from ev in listaEvaluaciones
+                    // where ev.Nota >= 3.0f
+                    select ev.Asignatura.Nombre).Distinct();
+        }
+
+        public Dictionary<string, IEnumerable<Evaluacion>> GetDicEvaluacionesXAsignatura() {
+            var rta = new Dictionary<string, IEnumerable<Evaluacion>>();
+
             return rta;
         }
     }
