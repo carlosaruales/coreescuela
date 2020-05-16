@@ -25,16 +25,33 @@ namespace Etapa1.App
             }
         }
 
-        public IEnumerable<string> GetListaAsignaturas() {
+        public IEnumerable<string> GetListaAsignaturas(out IEnumerable<Evaluacion> olistaEvaluaciones) {
             var listaEvaluaciones = GetListaEvaluaciones();
+            olistaEvaluaciones = listaEvaluaciones;
 
             return  (from ev in listaEvaluaciones
                     // where ev.Nota >= 3.0f
                     select ev.Asignatura.Nombre).Distinct();
         }
 
+        public IEnumerable<string> GetListaAsignaturas() {
+            return GetListaAsignaturas(
+                out var dummy
+            );
+        }
+
         public Dictionary<string, IEnumerable<Evaluacion>> GetDicEvaluacionesXAsignatura() {
             var rta = new Dictionary<string, IEnumerable<Evaluacion>>();
+            var listaAsig = GetListaAsignaturas(out var listaEvaluaciones);
+
+            foreach (var asig in listaAsig)
+            {
+                var evalsAsig = from evaluacion in listaEvaluaciones
+                                where evaluacion.Asignatura.Nombre == asig
+                                select evaluacion;
+                                
+                rta.Add(asig, evalsAsig);
+            }
 
             return rta;
         }

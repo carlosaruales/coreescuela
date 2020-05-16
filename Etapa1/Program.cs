@@ -19,6 +19,7 @@ namespace Etapa1
             Printer.WriteTitle("BIENVENIDOS A LA ESCUELA");
 
             var reporteador = new Reporteador(engine.GetDiccionarioObjetos());
+            reporteador.GetDicEvaluacionesXAsignatura();
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela) {
