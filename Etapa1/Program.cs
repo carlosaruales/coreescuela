@@ -56,6 +56,8 @@ namespace Etapa1
                 catch (System.Exception)
                 {
                     WriteLine("El valor de la nota no es un número válido");
+                } finally {
+                    WriteLine("FINALLY");
                 }
             }
         }
