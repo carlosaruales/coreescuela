@@ -15,5 +15,9 @@ namespace Etapa1.Util
             WriteLine($"| {titulo} |");
             DibujarLinea(tamano);
         }
+
+        public static void PresioneEnter(){
+            WriteLine("Presione ENTER para continuar");
+        }
     }
 }

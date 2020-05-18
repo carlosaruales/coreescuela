@@ -21,6 +21,43 @@ namespace Etapa1
             var reporteador = new Reporteador(engine.GetDiccionarioObjetos());
             reporteador.GetDicEvaluacionesXAsignatura();
             reporteador.GetPromedioAlumnosXAsig();
+
+            Printer.WriteTitle("Captura de una evaluación por consola");
+            var newEval = new Evaluacion();
+            string nombre, notaString;
+            float nota;
+            WriteLine("Ingrese el nombre de la evaluación");
+            Printer.PresioneEnter();
+            nombre = Console.ReadLine();
+            if(string.IsNullOrEmpty(nombre)) {
+                throw new ArgumentException("el valor del nombre no puede ser vacio");
+            } else {
+                newEval.Nombre = nombre.ToLower();
+                WriteLine("El nombre de la evaluación ha sido ingresado correctamente");
+            }
+
+            WriteLine("Ingrese la nota de la evaluación");
+            Printer.PresioneEnter();
+            notaString = Console.ReadLine();
+            if(string.IsNullOrEmpty(notaString)) {
+                throw new ArgumentException("el valor del nombre no puede ser vacio");
+            } else {
+                try
+                {
+                    newEval.Nota = float.Parse(notaString);
+                    if(newEval.Nota < 0 || newEval.Nota > 5) {
+                        throw new ArgumentOutOfRangeException("La nota debe estar entre 0 y 5");
+                    }
+                    WriteLine("La nota de la evaluación ha sido ingresada correctamente");
+                }
+                catch( ArgumentOutOfRangeException arg) {
+                    WriteLine(arg.Message);
+                }
+                catch (System.Exception)
+                {
+                    WriteLine("El valor de la nota no es un número válido");
+                }
+            }
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela) {
