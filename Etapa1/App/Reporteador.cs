@@ -55,5 +55,23 @@ namespace Etapa1.App
 
             return rta;
         }
+
+        public Dictionary<string, IEnumerable<object>> GetPromedioAlumnosXAsig() {
+            var rta = new Dictionary<string, IEnumerable<object>>();
+            var dicEvXAsig = GetDicEvaluacionesXAsignatura();
+
+            foreach (var asigConEval in dicEvXAsig)
+            {
+                var dummy = from eval in asigConEval.Value
+                            group eval by eval.Alumno.UniqueId
+                            into grupoEvalAlumno
+                            select  new {
+                                AlumnoId = grupoEvalAlumno.Key,
+                                Promedio = grupoEvalAlumno.Average(evaluacion => evaluacion.Nota)
+                            };
+                
+            }
+            return rta;
+        }
     }
 }

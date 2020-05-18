@@ -20,6 +20,7 @@ namespace Etapa1
 
             var reporteador = new Reporteador(engine.GetDiccionarioObjetos());
             reporteador.GetDicEvaluacionesXAsignatura();
+            reporteador.GetPromedioAlumnosXAsig();
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela) {
