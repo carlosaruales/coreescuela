@@ -62,13 +62,19 @@ namespace Etapa1.App
 
             foreach (var asigConEval in dicEvXAsig)
             {
-                var dummy = from eval in asigConEval.Value
-                            group eval by eval.Alumno.UniqueId
+                var promediosAlumnos = from eval in asigConEval.Value
+                            group eval by new {
+                                eval.Alumno.UniqueId,
+                                eval.Alumno.Nombre
+                            }
                             into grupoEvalAlumno
-                            select  new {
-                                AlumnoId = grupoEvalAlumno.Key,
+                            select  new AlumnoPromedio{
+                                AlumnoId = grupoEvalAlumno.Key.UniqueId,
+                                AlumnoNombre = grupoEvalAlumno.Key.Nombre,
                                 Promedio = grupoEvalAlumno.Average(evaluacion => evaluacion.Nota)
                             };
+
+                rta.Add(asigConEval.Key, promediosAlumnos);
                 
             }
             return rta;
